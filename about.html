@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Project | AI Student Performance Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2224%22>ℹ️</text></svg>">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="brand-wrapper">
+            <span class="brand-icon">🎓</span>
+            <div>
+                <h1>AI Student Performance Analytics</h1>
+                <p>Karunya Institute of Technology and Sciences • About The Platform</p>
+            </div>
+        </div>
+        <div class="header-meta">
+            <span class="status-pill">Web Tech Microproject</span>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="dashboard.html">📊 Dashboard</a></li>
+            <li><a href="students.html">👨‍🎓 Students</a></li>
+            <li><a href="reports.html">📑 Reports</a></li>
+            <li><a href="about.html" class="active">ℹ️ About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="page-container">
+        
+        <!-- Page Title -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">About The Platform</h2>
+                <p class="page-subtitle">Academic Intelligence, Predictive Risk Modeling & Faculty Mentorship Hub</p>
+            </div>
+            <div>
+                <a href="dashboard.html" class="btn btn-primary btn-sm">Explore Demo Dashboard →</a>
+            </div>
+        </div>
+
+        <!-- About Layout Grid -->
+        <div class="about-grid">
+            
+            <!-- Left Column: Details -->
+            <div>
+                
+                <!-- Card 1: Overview -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <h3 style="font-size: 18px; color: var(--primary-dark); margin-bottom: 12px;">🌟 Project Vision & Purpose</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: 14px;">
+                        The <strong>AI Student Performance Analytics Dashboard</strong> is an academic decision-support system developed 
+                        for <strong>Karunya Institute of Technology and Sciences</strong>. In contemporary higher education, early identification 
+                        of learning impediments is vital. This platform bridges traditional continuous assessment tracking with predictive analytics, 
+                        enabling professors to shift from reactive grading to proactive student mentorship.
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">
+                        By correlating continuous assessment scores (CIA-1, CIA-2), laboratory performance, and statutory attendance thresholds, 
+                        the system automatically computes CGPA projections, visualizes cohort distributions, and highlights at-risk learners well before final semester examinations.
+                    </p>
+                </div>
+
+                <!-- Card 2: 4-Step Analytical Architecture -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <h3 style="font-size: 18px; color: var(--primary-dark); margin-bottom: 14px;">⚙️ System Architecture & Workflow</h3>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">1. Multi-Stream Data Ingestion</div>
+                            <div class="timeline-desc">
+                                Collects student records, internal assessment scores (CIA-1 &amp; CIA-2), assignment grades, and bi-weekly attendance tracking logs.
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">2. Statistical Normalization & GPA Engine</div>
+                            <div class="timeline-desc">
+                                Normalizes scores across diverse academic subjects, applies credit weightings, and evaluates student standing on the standard UGC 10-point scale.
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">3. AI Predictive Risk Classification</div>
+                            <div class="timeline-desc">
+                                Multi-variable heuristic flags students exhibiting attendance under 75% or declining internal score trajectories, projecting potential arrear risks.
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">4. Actionable Faculty Dashboard & Export Hub</div>
+                            <div class="timeline-desc">
+                                Delivers visual dashboards, instant search capabilities, customizable reports, and client-side CSV downloads for academic audit meetings.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Grading Criteria Table -->
+                <div class="card">
+                    <h3 style="font-size: 18px; color: var(--primary-dark); margin-bottom: 12px;">📊 University Grading Standard (UGC 10-Point Scale)</h3>
+                    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
+                        Grading criteria utilized by the calculation engine for Karunya Institute of Technology and Sciences:
+                    </p>
+                    <div class="table-container">
+                        <table class="custom-table" style="font-size: 13px;">
+                            <thead>
+                                <tr>
+                                    <th>Mark Range (%)</th>
+                                    <th>Letter Grade</th>
+                                    <th>Grade Point</th>
+                                    <th>Performance Performance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>90 – 100</td>
+                                    <td><span class="badge badge-success">O</span></td>
+                                    <td>10.0</td>
+                                    <td>Outstanding</td>
+                                </tr>
+                                <tr>
+                                    <td>80 – 89</td>
+                                    <td><span class="badge badge-primary">A+</span></td>
+                                    <td>9.0</td>
+                                    <td>Excellent</td>
+                                </tr>
+                                <tr>
+                                    <td>70 – 79</td>
+                                    <td><span class="badge badge-primary">A</span></td>
+                                    <td>8.0</td>
+                                    <td>Very Good</td>
+                                </tr>
+                                <tr>
+                                    <td>60 – 69</td>
+                                    <td><span class="badge badge-warning">B+</span></td>
+                                    <td>7.0</td>
+                                    <td>Good</td>
+                                </tr>
+                                <tr>
+                                    <td>50 – 59</td>
+                                    <td><span class="badge badge-warning">B</span></td>
+                                    <td>6.0</td>
+                                    <td>Above Average</td>
+                                </tr>
+                                <tr>
+                                    <td>&lt; 50</td>
+                                    <td><span class="badge badge-danger">RA</span></td>
+                                    <td>0.0</td>
+                                    <td>Re-Appear (Arrear)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Tech Stack & Credits -->
+            <div>
+                
+                <!-- Tech Stack Card -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <h3 style="font-size: 16px; color: var(--primary-dark); margin-bottom: 12px;">💻 Technology Stack</h3>
+                    
+                    <div style="margin-bottom: 14px;">
+                        <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Structure & Layout</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Semantic HTML5 with accessibility tags and responsive viewport scaling.</div>
+                    </div>
+
+                    <div style="margin-bottom: 14px;">
+                        <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Styling & Theme</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Custom Vanilla CSS3 design system with CSS custom properties, grid layouts, and print stylesheets.</div>
+                    </div>
+
+                    <div style="margin-bottom: 14px;">
+                        <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Client-Side Logic</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Pure ES6+ JavaScript, handling real-time searching, filter pipelines, and client data mutations.</div>
+                    </div>
+
+                    <div style="margin-bottom: 14px;">
+                        <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Data Persistence</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Browser HTML5 LocalStorage for persisting added demo students across page refreshes.</div>
+                    </div>
+
+                    <div>
+                        <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Data Visualization</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Chart.js integration for responsive interactive HTML5 canvas charts.</div>
+                    </div>
+                </div>
+
+                <!-- Academic Microproject Card -->
+                <div class="card" style="margin-bottom: 24px; background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%); border-color: #bfdbfe;">
+                    <h3 style="font-size: 16px; color: var(--primary); margin-bottom: 10px;">🎓 Academic Project Details</h3>
+                    <ul style="list-style: none; font-size: 13px; line-height: 1.9; color: var(--text-main);">
+                        <li><strong>Course:</strong> Web Technology (1st Year)</li>
+                        <li><strong>Type:</strong> Microproject Submission</li>
+                        <li><strong>Institution:</strong> Karunya Institute of Technology and Sciences</li>
+                        <li><strong>Department:</strong> Computer Science and Engineering</li>
+                        <li><strong>Academic Term:</strong> 2025–2026</li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Feedback Form -->
+                <div class="card">
+                    <h3 style="font-size: 16px; color: var(--primary-dark); margin-bottom: 12px;">📬 Faculty Feedback & Contact</h3>
+                    <form onsubmit="event.preventDefault(); showToast('Thank you! Your feedback has been recorded.'); this.reset();">
+                        <div class="form-group">
+                            <label for="fb-name">Your Name / Designation</label>
+                            <input type="text" id="fb-name" class="form-control" placeholder="e.g. Dr. Thomas, Faculty Mentor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb-msg">Observations or Feedback</label>
+                            <textarea id="fb-msg" class="form-control" rows="3" placeholder="Enter comments or suggestions on the analytics platform..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Feedback</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <h3>AI Student Performance Analytics Platform</h3>
+        <p>A Web Technology Microproject developed for Karunya Institute of Technology and Sciences.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="students.html">Students</a>
+            <a href="reports.html">Reports</a>
+            <a href="about.html">About</a>
+        </div>
+        <p class="copyright">
+            &copy; 2025 Karunya Institute of Technology and Sciences. All rights reserved.
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
