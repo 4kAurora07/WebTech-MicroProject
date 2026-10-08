@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Dashboard | AI Student Performance Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2224%22>📊</text></svg>">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="brand-wrapper">
+            <span class="brand-icon">🎓</span>
+            <div>
+                <h1>AI Student Performance Analytics</h1>
+                <p>Karunya Institute of Technology and Sciences • Demo Dashboard</p>
+            </div>
+        </div>
+        <div class="header-meta">
+            <span class="status-pill">AI Engine Active</span>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="dashboard.html" class="active">📊 Dashboard</a></li>
+            <li><a href="students.html">👨‍🎓 Students</a></li>
+            <li><a href="reports.html">📑 Reports</a></li>
+            <li><a href="about.html">ℹ️ About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="page-container">
+        
+        <!-- Page Title & Actions -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">Executive Academic Dashboard</h2>
+                <p class="page-subtitle">Continuous Assessment Analytics & AI Early Warning System • B.Tech 2025-26</p>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-sm" onclick="resetStudents()">🔄 Reset Demo Data</button>
+                <button class="btn btn-primary btn-sm" onclick="exportStudentsToCSV()">📥 Export CSV</button>
+                <a href="students.html" class="btn btn-secondary btn-sm">➕ Add Student</a>
+            </div>
+        </div>
+
+        <!-- AI Alert Banner -->
+        <div class="ai-alert-banner">
+            <div class="ai-alert-icon">🤖</div>
+            <div class="ai-alert-content">
+                <h3>AI Predictive Risk Insight: Discrete Mathematics & Data Structures</h3>
+                <p>
+                    The predictive model identified that students with attendance falling below 75% show a <strong>74% higher risk</strong> 
+                    of scoring below 50% in Model Examinations. Two students currently meet this risk profile and require mandatory tutorial intervention.
+                </p>
+                <div class="ai-chips-list">
+                    <span class="ai-chip">⚠️ 2 Flagged at High Risk</span>
+                    <span class="ai-chip">💡 Remedial Sessions Scheduled</span>
+                    <span class="ai-chip">📈 68% Distinction Ratio</span>
+                    <span class="ai-chip">🎯 Target Class Avg: &gt; 8.5 CGPA</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card stat-info">
+                <div class="stat-header">
+                    <span class="stat-title">Total Enrolled</span>
+                    <span class="stat-icon">👥</span>
+                </div>
+                <div class="stat-value" id="dash-total-students">8</div>
+                <div class="stat-desc">Active in 1st Year cohort</div>
+            </div>
+
+            <div class="stat-card stat-success">
+                <div class="stat-header">
+                    <span class="stat-title">Class Mean CGPA</span>
+                    <span class="stat-icon">⭐</span>
+                </div>
+                <div class="stat-value" id="dash-avg-cgpa">8.42</div>
+                <div class="stat-desc"><span class="stat-badge positive">↑ +0.35</span> on 10.0 scale</div>
+            </div>
+
+            <div class="stat-card stat-warning">
+                <div class="stat-header">
+                    <span class="stat-title">Distinction Rate</span>
+                    <span class="stat-icon">🏆</span>
+                </div>
+                <div class="stat-value" id="dash-distinction-rate">68%</div>
+                <div class="stat-desc">CGPA &gt;= 8.50 cutoff</div>
+            </div>
+
+            <div class="stat-card stat-danger">
+                <div class="stat-header">
+                    <span class="stat-title">AI At-Risk Alerts</span>
+                    <span class="stat-icon">🚨</span>
+                </div>
+                <div class="stat-value" id="dash-at-risk">2</div>
+                <div class="stat-desc"><span class="stat-badge negative">Requires</span> academic mentor notice</div>
+            </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+            
+            <!-- Chart 1: Grade Distribution -->
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <span class="chart-card-title">📊 Grade Distribution (Karunya Scale)</span>
+                    <span class="badge badge-primary">Semester 2</span>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart-grades"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 2: Subject Performance -->
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <span class="chart-card-title">📈 Subject-Wise Average Performance (%)</span>
+                    <span class="badge badge-success">5 Core Subjects</span>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart-subjects"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 3: Attendance vs Performance Scatter -->
+            <div class="chart-card" style="grid-column: 1 / -1;">
+                <div class="chart-card-header">
+                    <div>
+                        <span class="chart-card-title">🔍 AI Correlation: Attendance Rate (%) vs Final CGPA</span>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+                            Strong positive statistical correlation (r = 0.88). Notice high cluster above 85% attendance.
+                        </p>
+                    </div>
+                    <span class="badge badge-warning">Predictive Regression</span>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart-correlation"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Top Achievers Leaderboard -->
+        <div class="table-card">
+            <div class="table-toolbar">
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--text-main);">🌟 Academic Honor Roll (Top Performers)</h3>
+                    <p style="font-size: 13px; color: var(--text-muted);">Students leading in Cumulative Grade Point Average</p>
+                </div>
+                <a href="students.html" class="btn btn-secondary btn-sm">View Full Directory →</a>
+            </div>
+            <div class="table-container">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Student Name</th>
+                            <th>Dept</th>
+                            <th>CGPA</th>
+                            <th>Attendance</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <!-- Populated dynamically via script.js -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Interactive Quick GPA Simulator Widget -->
+        <div class="calc-widget">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--text-main);">🧮 Interactive GPA & Grade Forecaster</h3>
+                    <p style="font-size: 13px; color: var(--text-muted);">Enter projected internal or semester exam marks (0 - 100) to compute simulated GPA</p>
+                </div>
+                <span class="badge badge-primary">Simulation Tool</span>
+            </div>
+
+            <div class="calc-row">
+                <div>
+                    <label style="font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px;">Data Structures</label>
+                    <input type="number" id="calc-m1" class="form-control" value="85" min="0" max="100" oninput="calculateQuickGpa()">
+                </div>
+                <div>
+                    <label style="font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px;">Web Technology</label>
+                    <input type="number" id="calc-m2" class="form-control" value="92" min="0" max="100" oninput="calculateQuickGpa()">
+                </div>
+                <div>
+                    <label style="font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px;">AI & ML</label>
+                    <input type="number" id="calc-m3" class="form-control" value="88" min="0" max="100" oninput="calculateQuickGpa()">
+                </div>
+                <div>
+                    <label style="font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px;">Discrete Math</label>
+                    <input type="number" id="calc-m4" class="form-control" value="78" min="0" max="100" oninput="calculateQuickGpa()">
+                </div>
+                <div>
+                    <label style="font-size: 12px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px;">DBMS</label>
+                    <input type="number" id="calc-m5" class="form-control" value="84" min="0" max="100" oninput="calculateQuickGpa()">
+                </div>
+            </div>
+
+            <div class="calc-result-box">
+                <div style="font-size: 13px; font-weight: 600; color: var(--primary-dark);">Projected Aggregate Score</div>
+                <div class="score" id="calc-result-score">85.4%</div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--text-main); margin-top: 4px;" id="calc-result-letter">
+                    Projected GPA: 9.0 / 10.0 • Grade: A+ (Excellent)
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Student Detail Modal -->
+    <div class="modal-backdrop" id="student-detail-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Academic Diagnostics Profile</h3>
+                <button class="modal-close-btn" onclick="closeStudentModal()">✕</button>
+            </div>
+            <div class="modal-body" id="student-detail-body">
+                <!-- Injected via script.js -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeStudentModal()">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h3>AI Student Performance Analytics Platform</h3>
+        <p>A Web Technology Microproject developed for Karunya Institute of Technology and Sciences.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="students.html">Students</a>
+            <a href="reports.html">Reports</a>
+            <a href="about.html">About</a>
+        </div>
+        <p class="copyright">
+            &copy; 2025 Karunya Institute of Technology and Sciences. All rights reserved.
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
