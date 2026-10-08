@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Directory | AI Student Performance Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2224%22>👨‍🎓</text></svg>">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="brand-wrapper">
+            <span class="brand-icon">🎓</span>
+            <div>
+                <h1>AI Student Performance Analytics</h1>
+                <p>Karunya Institute of Technology and Sciences • Student Records</p>
+            </div>
+        </div>
+        <div class="header-meta">
+            <span class="status-pill">Registry Synchronized</span>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="dashboard.html">📊 Dashboard</a></li>
+            <li><a href="students.html" class="active">👨‍🎓 Students</a></li>
+            <li><a href="reports.html">📑 Reports</a></li>
+            <li><a href="about.html">ℹ️ About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="page-container">
+        
+        <!-- Header & Action Bar -->
+        <div class="page-header">
+            <div>
+                <h2 class="page-title">Student Records & Continuous Assessment</h2>
+                <p class="page-subtitle">Manage internal assessments, track attendance thresholds, and inspect AI diagnostic flags.</p>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary btn-sm" onclick="resetStudents()">🔄 Reset Demo Data</button>
+                <button class="btn btn-secondary btn-sm" onclick="exportStudentsToCSV()">📥 Export to CSV</button>
+                <button class="btn btn-primary btn-sm" onclick="openAddStudentModal()">➕ Add New Student</button>
+            </div>
+        </div>
+
+        <!-- Table Container -->
+        <div class="table-card">
+            
+            <!-- Filter Toolbar -->
+            <div class="table-toolbar">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="student-search" class="search-input" placeholder="Search by student name or register number (e.g. URK25CS101)...">
+                </div>
+
+                <div class="table-filters">
+                    <select id="filter-dept" class="select-filter">
+                        <option value="ALL">All Departments</option>
+                        <option value="CSE">CSE</option>
+                        <option value="AI&DS">AI & DS</option>
+                        <option value="ECE">ECE</option>
+                        <option value="IT">IT</option>
+                    </select>
+
+                    <select id="filter-tier" class="select-filter">
+                        <option value="ALL">All Performance Tiers</option>
+                        <option value="DISTINCTION">Distinction (&ge; 8.5 CGPA)</option>
+                        <option value="FIRST_CLASS">First Class (7.0 - 8.4)</option>
+                        <option value="AT_RISK">At-Risk / Low Attendance</option>
+                    </select>
+
+                    <span class="badge badge-primary" id="student-count-badge">8 students</span>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-container">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Reg. Number</th>
+                            <th>Student Name</th>
+                            <th>Dept</th>
+                            <th>Attendance</th>
+                            <th>Internals Avg</th>
+                            <th>CGPA & Grade</th>
+                            <th>AI Evaluation</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="students-tbody">
+                        <!-- Rendered by script.js -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Add Student Modal -->
+    <div class="modal-backdrop" id="add-student-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Add New Student Record</h3>
+                <button class="modal-close-btn" onclick="closeAddStudentModal()">✕</button>
+            </div>
+            <form id="add-student-form">
+                <div class="modal-body">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="new-regno">Register Number (Roll No) *</label>
+                            <input type="text" id="new-regno" class="form-control" placeholder="e.g. URK25CS109" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-name">Student Full Name *</label>
+                            <input type="text" id="new-name" class="form-control" placeholder="e.g. Michelle John" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="new-dept">Department *</label>
+                            <select id="new-dept" class="form-control" required>
+                                <option value="Computer Science & Engg">Computer Science & Engg (CSE)</option>
+                                <option value="AI & Data Science">AI & Data Science (AI&DS)</option>
+                                <option value="Electronics & Comm.">Electronics & Comm. (ECE)</option>
+                                <option value="Information Technology">Information Technology (IT)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-sem">Semester *</label>
+                            <select id="new-sem" class="form-control" required>
+                                <option value="Semester 1">Semester 1</option>
+                                <option value="Semester 2" selected>Semester 2</option>
+                                <option value="Semester 3">Semester 3</option>
+                                <option value="Semester 4">Semester 4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="new-attendance">Attendance Rate (%) *</label>
+                            <input type="number" id="new-attendance" class="form-control" placeholder="0 - 100" min="0" max="100" required>
+                            <small style="color: var(--text-muted); font-size: 11px;">Statutory minimum is 75%.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-internal">Internal Assessment Avg (0-100) *</label>
+                            <input type="number" id="new-internal" class="form-control" placeholder="0 - 100" min="0" max="100" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-cgpa">Current Cumulative GPA (0.00 - 10.00) *</label>
+                        <input type="number" step="0.01" id="new-cgpa" class="form-control" placeholder="e.g. 8.45" min="0" max="10" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddStudentModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student Record</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Student Detail Modal -->
+    <div class="modal-backdrop" id="student-detail-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Academic Diagnostics Profile</h3>
+                <button class="modal-close-btn" onclick="closeStudentModal()">✕</button>
+            </div>
+            <div class="modal-body" id="student-detail-body">
+                <!-- Injected via script.js -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeStudentModal()">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h3>AI Student Performance Analytics Platform</h3>
+        <p>A Web Technology Microproject developed for Karunya Institute of Technology and Sciences.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="students.html">Students</a>
+            <a href="reports.html">Reports</a>
+            <a href="about.html">About</a>
+        </div>
+        <p class="copyright">
+            &copy; 2025 Karunya Institute of Technology and Sciences. All rights reserved.
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
